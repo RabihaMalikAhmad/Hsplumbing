@@ -1,0 +1,49 @@
+// Prisma schema for Harpreet Singh Plumbing & Heating
+//
+// Default datasource is SQLite, which is the simplest option for a solo
+// tradesman running this on a single small server or for local development.
+//
+// IMPORTANT — Vercel deployments: Vercel's filesystem is read-only/ephemeral
+// in production, so a SQLite file will NOT persist bookings between deploys
+// or across serverless invocations. Before deploying to Vercel, switch this
+// to Postgres (a free Neon or Supabase database both work fine):
+//
+//   datasource db {
+//     provider = "postgresql"
+//     url      = env("DATABASE_URL")
+//   }
+//
+// and set DATABASE_URL in your environment to the Postgres connection string.
+// See README.md for full instructions.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Booking {
+  id          String   @id @default(cuid())
+  name        String
+  phone       String
+  email       String?
+  jobType     String
+  preferredAt String
+  description String?
+  status      String   @default("new") // new | confirmed | cancelled
+  smsSent     Boolean  @default(false)
+  calendarEventId String?
+  createdAt   DateTime @default(now())
+}
+
+model Enquiry {
+  id        String   @id @default(cuid())
+  name      String
+  email     String
+  phone     String?
+  message   String
+  createdAt DateTime @default(now())
+}

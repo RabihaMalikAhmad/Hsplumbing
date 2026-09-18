@@ -30,6 +30,15 @@ This guide assumes you've never set any of this up before. Follow it top to bott
 
 ## 2. Get the code running locally
 
+Clone the repository:
+
+```bash
+git clone https://github.com/RabihaMalikAhmad/Hsplumbing.git
+cd Hsplumbing
+```
+
+Install dependencies and set up your environment file:
+
 ```bash
 npm install
 cp .env.example .env

@@ -6,8 +6,10 @@ const galleryPhotos = [
   { src: "/gallery/gledhill-thermal-store.jpg", alt: "Recently installed Gledhill open vented thermal store" },
   { src: "/gallery/worcester-combi-swap.jpg", alt: "Worcester combi boiler swap at a period property in Malvern" },
   { src: "/gallery/worcester-combi-cheltenham.jpg", alt: "New Worcester combi boiler installed in Cheltenham" },
-  { src: "/gallery/old-cylinder-before.jpg", alt: "Old hot water cylinder before replacement" },
-  { src: "/gallery/pipework-before.jpg", alt: "Existing pipework before a system upgrade" },
+  { src: "/gallery/worcester-combi-freeguarantee.jpg", alt: "Worcester combi boiler install with 10 year guarantee" },
+  { src: "/gallery/baxi-eco-compact-cupboard.jpg", alt: "Baxi Eco Compact combi boiler installed in a kitchen cupboard" },
+  { src: "/gallery/boiler-swap-before.jpg", alt: "Old boiler before replacement", objectPosition: "top" },
+  { src: "/gallery/boiler-swap-after.jpg", alt: "New Baxi combi boiler after installation" },
 ];
 
 export default function Home() {
@@ -99,7 +101,13 @@ export default function Home() {
           <div className="gallery">
             {galleryPhotos.map((photo) => (
               <div className="photo-slot" key={photo.src}>
-                <Image src={photo.src} alt={photo.alt} fill sizes="(max-width: 620px) 50vw, 33vw" style={{ objectFit: "cover" }} />
+                <Image
+                  src={photo.src}
+                  alt={photo.alt}
+                  fill
+                  sizes="(max-width: 620px) 50vw, 33vw"
+                  style={{ objectFit: "cover", objectPosition: photo.objectPosition ?? "center" }}
+                />
               </div>
             ))}
           </div>

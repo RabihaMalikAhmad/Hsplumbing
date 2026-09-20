@@ -123,32 +123,30 @@ the site — there's no separate user accounts system.
 
 ## 7. Deploy to Vercel
 
+The database is already Postgres (see below), so no schema changes are needed before deploying.
+
 1. Push this repository to GitHub (or GitLab/Bitbucket).
-2. Go to https://vercel.com/new, import the repository, and click Deploy — Vercel auto-detects Next.js.
-3. **Before the first real deploy**, switch the database off SQLite, because Vercel's servers don't keep
-   files between requests (a SQLite file would reset constantly). Use a free Postgres database instead:
-   - Easiest: in your Vercel project, go to **Storage > Create Database > Postgres** (powered by Neon),
-     or sign up separately at https://neon.tech or https://supabase.com.
-   - Copy the connection string it gives you.
-   - In `prisma/schema.prisma`, change the datasource block to:
-     ```prisma
-     datasource db {
-       provider = "postgresql"
-       url      = env("DATABASE_URL")
-     }
-     ```
-   - Commit that change.
-4. In the Vercel project's **Settings > Environment Variables**, add every variable from your `.env` file
-   (with the new Postgres `DATABASE_URL`). Redeploy.
-5. After the first deploy with the Postgres URL set, run once (from your machine, with that same
-   `DATABASE_URL` in your local `.env`):
-   ```bash
-   npx prisma db push
-   ```
-   This creates the tables in the new database.
-6. Visit your `*.vercel.app` URL to confirm the site loads, then test a booking end-to-end.
+2. Get a Postgres database if you don't already have one — the easiest way is Vercel's own
+   **Storage > Create Database > Postgres** (powered by Neon) once your project exists, or sign up
+   separately at https://neon.tech or https://supabase.com and copy the connection string it gives you.
+3. Go to https://vercel.com/new, import the repository, and click Deploy — Vercel auto-detects Next.js.
+4. In the Vercel project's **Settings > Environment Variables**, add every variable from your `.env` file,
+   including `DATABASE_URL` set to that Postgres connection string. This has to be set before the build
+   runs, because the build step creates the database tables automatically (see below) — redeploy after
+   adding it if the first deploy ran without it.
+5. Visit your `*.vercel.app` URL to confirm the site loads, then test a booking end-to-end.
 
 Vercel's free tier is enough for a single tradesman's booking traffic.
+
+### Why the tables appear automatically
+
+The `build` script in `package.json` runs `prisma db push` before `next build`, which creates or updates
+the database tables to match `prisma/schema.prisma` on every deploy — there's no separate migration step
+to remember. This is intentionally simple rather than using Prisma's full migration system, which suits a
+small single-developer project; the trade-off is that `db push` will apply schema changes (including ones
+that could drop data) without asking for confirmation, since Vercel's build has no interactive terminal to
+confirm in. For this project's size that's an acceptable trade-off, but keep it in mind if you ever add a
+column and remove another in the same change — back up data first if you're not sure.
 
 ## Project structure
 

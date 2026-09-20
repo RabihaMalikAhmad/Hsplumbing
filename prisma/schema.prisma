@@ -5,6 +5,9 @@
 // lose all data between deploys or invocations. DATABASE_URL is the Neon
 // connection string, set in .env locally and in Vercel's Environment
 // Variables for production. See README.md for full instructions.
+//
+// DATABASE_URL is now set in Vercel — the build's "prisma db push" step
+// creates these tables in Neon on deploy.
 
 generator client {
   provider = "prisma-client-js"

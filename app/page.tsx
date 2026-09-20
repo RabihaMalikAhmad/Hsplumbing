@@ -1,5 +1,14 @@
+import Image from "next/image";
 import BookingForm from "@/components/BookingForm";
 import EnquiryForm from "@/components/EnquiryForm";
+
+const galleryPhotos = [
+  { src: "/gallery/gledhill-thermal-store.jpg", alt: "Recently installed Gledhill open vented thermal store" },
+  { src: "/gallery/worcester-combi-swap.jpg", alt: "Worcester combi boiler swap at a period property in Malvern" },
+  { src: "/gallery/worcester-combi-cheltenham.jpg", alt: "New Worcester combi boiler installed in Cheltenham" },
+  { src: "/gallery/old-cylinder-before.jpg", alt: "Old hot water cylinder before replacement" },
+  { src: "/gallery/pipework-before.jpg", alt: "Existing pipework before a system upgrade" },
+];
 
 export default function Home() {
   return (
@@ -88,30 +97,11 @@ export default function Home() {
           </div>
 
           <div className="gallery">
-            <div className="photo-slot">
-              <svg viewBox="0 0 24 24" fill="none" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-                <rect x="3" y="6" width="18" height="14" rx="2" />
-                <circle cx="12" cy="13" r="3.5" />
-                <path d="M9 6l1.2-2h3.6L15 6" />
-              </svg>
-              <span>[Insert job photo — e.g. boiler install]</span>
-            </div>
-            <div className="photo-slot">
-              <svg viewBox="0 0 24 24" fill="none" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-                <rect x="3" y="6" width="18" height="14" rx="2" />
-                <circle cx="12" cy="13" r="3.5" />
-                <path d="M9 6l1.2-2h3.6L15 6" />
-              </svg>
-              <span>[Insert job photo — e.g. bathroom fit]</span>
-            </div>
-            <div className="photo-slot">
-              <svg viewBox="0 0 24 24" fill="none" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-                <rect x="3" y="6" width="18" height="14" rx="2" />
-                <circle cx="12" cy="13" r="3.5" />
-                <path d="M9 6l1.2-2h3.6L15 6" />
-              </svg>
-              <span>[Insert job photo — e.g. Harpreet at work]</span>
-            </div>
+            {galleryPhotos.map((photo) => (
+              <div className="photo-slot" key={photo.src}>
+                <Image src={photo.src} alt={photo.alt} fill sizes="(max-width: 620px) 50vw, 33vw" style={{ objectFit: "cover" }} />
+              </div>
+            ))}
           </div>
         </div>
       </section>

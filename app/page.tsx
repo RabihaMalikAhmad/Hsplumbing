@@ -92,6 +92,24 @@ export default function Home() {
         </div>
       </div>
 
+      <section className="section area alt">
+        <div className="wrap">
+          <Reveal>
+            <h2>Areas covered</h2>
+            <p className="intro">Based in Smethwick, covering the surrounding areas.</p>
+            <div className="list">
+              <span>Smethwick</span>
+              <span>Birmingham</span>
+              <span>West Bromwich</span>
+              <span>Oldbury</span>
+              <span>Edgbaston</span>
+              <span>Sandwell</span>
+            </div>
+            <p className="note">Not sure if you're in range? Just call — happy to check.</p>
+          </Reveal>
+        </div>
+      </section>
+
       <section className="section" id="services">
         <div className="wrap">
           <Reveal>
@@ -298,24 +316,6 @@ export default function Home() {
                 <p>[Insert accepted payment methods, e.g. cash, bank transfer, card.]</p>
               </details>
             </div>
-          </Reveal>
-        </div>
-      </section>
-
-      <section className="section area alt">
-        <div className="wrap">
-          <Reveal>
-            <h2>Areas covered</h2>
-            <p className="intro">Based in Smethwick, covering the surrounding areas.</p>
-            <div className="list">
-              <span>Smethwick</span>
-              <span>Birmingham</span>
-              <span>West Bromwich</span>
-              <span>Oldbury</span>
-              <span>Edgbaston</span>
-              <span>Sandwell</span>
-            </div>
-            <p className="note">Not sure if you're in range? Just call — happy to check.</p>
           </Reveal>
         </div>
       </section>

@@ -76,6 +76,18 @@ export default function Home() {
               <a className="btn-outline" href="#enquiry">
                 Request a quote
               </a>
+              <a
+                className="whatsapp-link"
+                href="https://wa.me/447857873515"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <svg viewBox="0 0 24 24" fill="currentColor" stroke="none">
+                  <path d="M17.5 14.4c-.3-.1-1.6-.8-1.9-.9-.3-.1-.4-.1-.6.1-.2.3-.7.9-.8 1-.1.2-.3.2-.6.1-.3-.1-1.2-.4-2.2-1.4-.8-.7-1.4-1.6-1.5-1.9-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.1.2-.3.2-.4.1-.2 0-.3 0-.5-.1-.1-.6-1.5-.8-2-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.1s1 2.5 1.1 2.6c.1.2 2 3 4.8 4.2.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.5-.1 1.6-.7 1.9-1.3.2-.6.2-1.1.2-1.2-.1-.2-.3-.2-.6-.4z" />
+                  <path d="M12 2C6.5 2 2 6.5 2 12c0 1.9.5 3.6 1.4 5.2L2 22l4.9-1.3c1.5.8 3.2 1.3 5.1 1.3 5.5 0 10-4.5 10-10S17.5 2 12 2zm0 18.2c-1.7 0-3.3-.5-4.6-1.3l-.3-.2-3.1.8.8-3-.2-.3C3.9 14.8 3.4 13.4 3.4 12c0-4.7 3.9-8.6 8.6-8.6s8.6 3.9 8.6 8.6-3.9 8.6-8.6 8.6z" />
+                </svg>
+                WhatsApp
+              </a>
             </div>
           </div>
           <div className="hero-photo">
@@ -97,7 +109,7 @@ export default function Home() {
             <svg viewBox="0 0 24 24" fill="none" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
               <path d="M12 2l8 4v6c0 4.9-3.4 8.4-8 10-4.6-1.6-8-5.1-8-10V6l8-4z" />
             </svg>
-            <span><strong>Gas Safe registered</strong> — Reg No. [insert here]</span>
+            <span><strong>Gas Safe registered</strong> — Reg No. 658223</span>
           </div>
           <div className="trust-divider" />
           <div className="trust-item">
@@ -114,6 +126,14 @@ export default function Home() {
               <circle cx="12" cy="12" r="4" />
             </svg>
             <span>Fully insured</span>
+          </div>
+          <div className="trust-divider" />
+          <div className="trust-item">
+            <svg viewBox="0 0 24 24" fill="none" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+              <circle cx="12" cy="12" r="9" />
+              <path d="M12 7v5l3.5 2" />
+            </svg>
+            <span><strong>24/7</strong> call-outs</span>
           </div>
         </div>
       </div>
@@ -263,7 +283,7 @@ export default function Home() {
                                 <div className="faq">
               <details>
                 <summary>How quickly can you get to an emergency?</summary>
-                <p>[Insert typical response time, e.g. &quot;Usually within the hour for emergencies in the local area.&quot;]</p>
+                <p>Harpreet offers 24/7 call-outs across Smethwick and Birmingham — call or WhatsApp anytime, day or night.</p>
               </details>
               <details>
                 <summary>Do you charge a call-out fee?</summary>
@@ -271,7 +291,7 @@ export default function Home() {
               </details>
               <details>
                 <summary>Are you Gas Safe registered and insured?</summary>
-                <p>[Insert answer — see trust strip above.]</p>
+                <p>Yes — Gas Safe registered (Reg No. 658223) and fully insured.</p>
               </details>
               <details>
                 <summary>What areas do you cover?</summary>
@@ -305,11 +325,21 @@ export default function Home() {
         <div className="wrap grid">
           <div>
             <h2>Got a plumbing job?</h2>
-            <p>Call or text anytime — usually gets back within the hour.</p>
+            <p>24/7 call-outs — call or WhatsApp anytime, day or night.</p>
           </div>
-          <a className="phone-link" href="tel:07857873515">
-            07857 873515
-          </a>
+          <div className="contact-actions">
+            <a className="phone-link" href="tel:07857873515">
+              07857 873515
+            </a>
+            <a
+              className="phone-link whatsapp"
+              href="https://wa.me/447857873515"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              WhatsApp
+            </a>
+          </div>
         </div>
       </section>
 

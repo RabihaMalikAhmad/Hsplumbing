@@ -29,7 +29,7 @@ export default function Home() {
       <div className="topbar">
         <div className="wrap">
           <div className="brand">
-            Harpreet Singh <span>Plumbing &amp; Heating</span>
+            Reehal <span>Plumbing &amp; Heating</span>
           </div>
           <nav>
             <div className="nav-dropdown">
@@ -37,11 +37,14 @@ export default function Home() {
               <div className="dropdown-menu">
                 <a href="#service-general-plumbing">General plumbing</a>
                 <a href="#service-emergency-callouts">Emergency callouts</a>
-                <a href="#service-boiler-services">Boiler services</a>
-                <a href="#service-bathroom-fitting">Bathroom fitting</a>
+                <a href="#service-boiler-services">Boiler &amp; gas appliances</a>
+                <a href="#service-bathroom-fitting">Bathroom &amp; kitchen fitting</a>
+                <a href="#service-leak-detection">Leak detection</a>
+                <a href="#service-heating-systems">Heating systems</a>
               </div>
             </div>
             <a href="#our-work">Our work</a>
+            <a href="#reviews">Reviews</a>
             <a href="#about">About</a>
             <a href="#contact">Contact</a>
           </nav>
@@ -67,7 +70,8 @@ export default function Home() {
             <div className="kicker">Smethwick &amp; Birmingham</div>
             <h1>Your local plumber in Smethwick.</h1>
             <p className="lead">
-              Plumbing repairs, boiler care and bathroom fitting across Smethwick and surrounding areas.
+              Reehal Plumbing &amp; Heating — plumbing repairs, boiler and gas appliance care, leak detection
+              and bathroom fitting across Smethwick and surrounding areas. 24/7 call-outs.
             </p>
             <div className="cta-row">
               <a className="btn-primary" href="tel:07857873515">
@@ -170,8 +174,8 @@ export default function Home() {
                     <path d="M8 3c-1.5 2-1 3.5 0 5-1.8.9-3 2.8-3 5a5 5 0 0010 0c0-1.6-.6-2.7-1.4-3.8-.9 1-1 2-.6 3a2 2 0 11-3.8-1c.9-1.6 1-3.4-1.2-8.2z" />
                   </svg>
                 </div>
-                <h3>Boiler services</h3>
-                <p>Boiler repairs, servicing and installation to keep your heating and hot water running.</p>
+                <h3>Boiler &amp; gas appliances</h3>
+                <p>Boiler installs, repairs and servicing, plus gas cookers, fires and water heaters.</p>
                 <a className="service-link" href="#booking">Book this job →</a>
               </div>
               <div className="service" id="service-bathroom-fitting">
@@ -180,8 +184,30 @@ export default function Home() {
                     <path d="M3 12h18M4 12V7a2 2 0 012-2h3v2M7 21l-1-4M17 21l1-4M6 12a2 2 0 002 2h8a2 2 0 002-2" />
                   </svg>
                 </div>
-                <h3>Bathroom fitting</h3>
-                <p>Full or partial bathroom fits, from a new suite to a full refit.</p>
+                <h3>Bathroom &amp; kitchen fitting</h3>
+                <p>Full or partial bathroom refits, plus kitchen, garden and specialist tap installs.</p>
+                <a className="service-link" href="#enquiry">Request a quote →</a>
+              </div>
+              <div className="service" id="service-leak-detection">
+                <div className="icon">
+                  <svg viewBox="0 0 24 24" fill="none" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M12 3s6 6.5 6 10.5a6 6 0 01-12 0C6 9.5 12 3 12 3z" />
+                    <path d="M9.5 14a2.5 2.5 0 002.5 2.5" />
+                  </svg>
+                </div>
+                <h3>Leak detection</h3>
+                <p>Thermal imaging to trace hidden leaks in walls, floors and ceilings before repair.</p>
+                <a className="service-link" href="#enquiry">Request a quote →</a>
+              </div>
+              <div className="service" id="service-heating-systems">
+                <div className="icon">
+                  <svg viewBox="0 0 24 24" fill="none" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                    <rect x="4" y="4" width="16" height="16" rx="2" />
+                    <path d="M8 8h.01M12 8h4M8 12h8M8 16h4" />
+                  </svg>
+                </div>
+                <h3>Heating systems</h3>
+                <p>Underfloor heating, heating system extensions and smart thermostat installation.</p>
                 <a className="service-link" href="#enquiry">Request a quote →</a>
               </div>
             </div>
@@ -197,10 +223,11 @@ export default function Home() {
               <div className="meet-body">
                 <h3>Harpreet Singh</h3>
                 <p>
-                  Harpreet is a Gas Safe registered plumber based in Smethwick. He handles jobs himself, from a
-                  dripping tap to a full boiler swap, so you always know who&apos;s turning up and who to call
-                  afterwards if you need anything. He answers the phone directly, keeps pricing upfront before
-                  any work starts, and gets to emergency jobs quickly wherever possible.
+                  Harpreet runs Reehal Plumbing &amp; Heating, a Gas Safe registered plumbing and heating
+                  business based in Smethwick. He handles jobs himself, from a dripping tap to a full boiler
+                  swap, so you always know who&apos;s turning up and who to call afterwards if you need
+                  anything. He answers the phone directly, keeps pricing upfront before any work starts, and
+                  offers 24/7 call-outs for jobs that can&apos;t wait.
                 </p>
               </div>
             </div>
@@ -231,6 +258,58 @@ export default function Home() {
                 </div>
               ))}
             </div>
+                  </div>
+      </section>
+
+      <section className="section" id="reviews">
+        <div className="wrap">
+                      <h2>What customers say</h2>
+            <p className="intro">Genuine reviews from Google.</p>
+                                <div className="review-summary">
+              <span className="review-stars" aria-hidden="true">★★★★★</span>
+              <span><strong>5.0</strong> from 3 Google reviews</span>
+            </div>
+            <div className="reviews">
+              <div className="review-card">
+                <div className="review-head">
+                  <span className="review-name">Arjan Marway</span>
+                  <span className="review-stars" aria-hidden="true">★★★★★</span>
+                </div>
+                <p className="review-date">Google review · a year ago</p>
+                <p>
+                  &quot;I&apos;ve known Harps for a while now, and honestly, I can&apos;t recommend him enough.
+                  He&apos;s helped me and my family so much over the years. Harps is a brilliant plumber who
+                  always takes his time to get things done properly — no rushing, just…&quot;
+                </p>
+              </div>
+              <div className="review-card">
+                <div className="review-head">
+                  <span className="review-name">Paul Biernat</span>
+                  <span className="review-stars" aria-hidden="true">★★★★★</span>
+                </div>
+                <p className="review-date">Google review · 8 months ago</p>
+                <p>
+                  &quot;Absolutely fantastic service! Very polite, highly skilled and extremely punctual. I have
+                  called him twice now. Once for the boiler repair and once for the leaking pipes in the
+                  ceiling and on both occasions the work was completed to an…&quot;
+                </p>
+              </div>
+              <div className="review-card">
+                <div className="review-head">
+                  <span className="review-name">Sumit Parghi</span>
+                  <span className="review-stars" aria-hidden="true">★★★★★</span>
+                </div>
+                <p className="review-date">Google review · 3 months ago</p>
+              </div>
+            </div>
+            <a
+              className="service-link"
+              href="https://share.google/gNRe8IgofKzk6sG9o"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              View all reviews on Google →
+            </a>
                   </div>
       </section>
 
@@ -291,7 +370,10 @@ export default function Home() {
               </details>
               <details>
                 <summary>Are you Gas Safe registered and insured?</summary>
-                <p>Yes — Gas Safe registered (Reg No. 658223) and fully insured.</p>
+                <p>
+                  Yes — Gas Safe registered (Reg No. 658223) for boilers, gas cookers, gas fires, gas pipework,
+                  meters and water heaters, and fully insured.
+                </p>
               </details>
               <details>
                 <summary>What areas do you cover?</summary>
@@ -345,13 +427,18 @@ export default function Home() {
 
       <footer className="bottom">
         <div className="wrap">
-          <span>Harpreet Singh Plumbing &amp; Heating — Smethwick &amp; Birmingham</span>
-          <span>
+          <span>Reehal Plumbing &amp; Heating — Smethwick &amp; Birmingham</span>
+          <span className="footer-links">
             <a href="tel:07857873515">07857 873515</a>
+            <a href="mailto:Reehal.Engineer@Hotmail.com">Reehal.Engineer@Hotmail.com</a>
+            <a href="https://share.google/gNRe8IgofKzk6sG9o" target="_blank" rel="noopener noreferrer">
+              Find us on Google
+            </a>
           </span>
         </div>
         <div className="wrap footer-note">
-          Placeholders marked in [brackets] — swap in real details, pricing and reviews as they come in.
+          Pricing figures marked in [brackets] above are placeholders — final costs are always confirmed
+          before work starts.
         </div>
       </footer>
     </>

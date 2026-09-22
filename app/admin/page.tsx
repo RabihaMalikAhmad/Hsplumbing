@@ -17,7 +17,7 @@ export default async function AdminPage() {
     <div className="admin-page">
       <div className="admin-header">
         <div className="wrap" style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-          <h1 style={{ color: "#fff", fontSize: "1.4rem" }}>Harpreet Singh Plumbing — Admin</h1>
+          <h1 style={{ color: "#fff", fontSize: "1.4rem" }}>Reehal Plumbing &amp; Heating — Admin</h1>
           <LogoutButton />
         </div>
       </div>

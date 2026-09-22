@@ -1,6 +1,6 @@
-# Harpreet Singh Plumbing & Heating — website
+# Reehal Plumbing & Heating — website
 
-A full-stack booking website for Harpreet Singh Plumbing & Heating (Smethwick & Birmingham), built with
+A full-stack booking website for Reehal Plumbing & Heating (Smethwick & Birmingham), run by Harpreet Singh, built with
 Next.js (App Router). The original static design and copy are preserved exactly — this adds a real
 booking form, SMS alerts, Google Calendar integration, a general enquiry form, and a password-protected
 admin page.

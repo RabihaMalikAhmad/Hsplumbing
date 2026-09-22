@@ -83,7 +83,7 @@ export async function POST(req: NextRequest) {
   try {
     await sendSms(
       toE164UK(booking.phone),
-      `Hi ${booking.name}, thanks for your booking request with Harpreet Singh Plumbing & Heating for ${preferredDate.toLocaleString("en-GB", { timeZone: "Europe/London" })}. Harpreet will confirm shortly. Call/text 07857 873515 with any questions.`
+      `Hi ${booking.name}, thanks for your booking request with Reehal Plumbing & Heating for ${preferredDate.toLocaleString("en-GB", { timeZone: "Europe/London" })}. Harpreet will confirm shortly. Call/text 07857 873515 with any questions.`
     );
   } catch (err) {
     console.error("Failed to send customer confirmation SMS:", err);

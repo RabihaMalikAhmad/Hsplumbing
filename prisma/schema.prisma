@@ -1,4 +1,4 @@
-// Prisma schema for Harpreet Singh Plumbing & Heating
+// Prisma schema for Reehal Plumbing & Heating
 //
 // Uses Postgres (Neon) so bookings persist across Vercel's serverless
 // deployments — Vercel's filesystem is read-only/ephemeral, so SQLite would

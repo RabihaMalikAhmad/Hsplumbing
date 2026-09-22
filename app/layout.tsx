@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Harpreet Singh Plumbing & Heating — Smethwick & Birmingham",
+  title: "Reehal Plumbing & Heating — Smethwick & Birmingham",
   description:
-    "General plumbing, emergency callouts, boiler repairs and bathroom fitting in Smethwick, Birmingham, West Bromwich, Oldbury, Edgbaston and Sandwell.",
+    "General plumbing, emergency callouts, boiler and gas appliance servicing, leak detection and bathroom fitting in Smethwick, Birmingham, West Bromwich, Oldbury, Edgbaston and Sandwell. Gas Safe registered, 24/7 call-outs.",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

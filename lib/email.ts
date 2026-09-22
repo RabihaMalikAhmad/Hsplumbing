@@ -1,20 +1,21 @@
-import { Resend } from "resend";
+import nodemailer from "nodemailer";
 
-function getClient() {
-  const apiKey = process.env.RESEND_API_KEY;
-  if (!apiKey) {
-    throw new Error("RESEND_API_KEY is not set");
+function getTransporter() {
+  const user = process.env.GMAIL_USER;
+  const pass = process.env.GMAIL_APP_PASSWORD;
+  if (!user || !pass) {
+    throw new Error("GMAIL_USER and GMAIL_APP_PASSWORD must be set");
   }
-  return new Resend(apiKey);
+  return nodemailer.createTransport({
+    service: "gmail",
+    auth: { user, pass },
+  });
 }
 
 export async function sendEmail(params: { to: string; subject: string; text: string }) {
-  const from = process.env.EMAIL_FROM;
-  if (!from) {
-    throw new Error("EMAIL_FROM is not set");
-  }
-  const resend = getClient();
-  return resend.emails.send({
+  const from = process.env.GMAIL_USER;
+  const transporter = getTransporter();
+  return transporter.sendMail({
     from,
     to: params.to,
     subject: params.subject,

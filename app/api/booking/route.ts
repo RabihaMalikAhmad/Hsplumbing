@@ -3,6 +3,7 @@ import { prisma } from "@/lib/prisma";
 import { sendSms } from "@/lib/sms";
 import { createCalendarEvent } from "@/lib/googleCalendar";
 import { toE164UK } from "@/lib/phone";
+import { sendEmail } from "@/lib/email";
 
 export async function POST(req: NextRequest) {
   const body = await req.json().catch(() => null);
@@ -59,6 +60,21 @@ export async function POST(req: NextRequest) {
     }
   } else {
     warnings.push("OWNER_PHONE is not configured — no SMS notification was sent.");
+  }
+
+  // Notify Harpreet by email too, as a second channel alongside the SMS.
+  const ownerEmail = process.env.OWNER_EMAIL;
+  if (ownerEmail) {
+    try {
+      await sendEmail({
+        to: ownerEmail,
+        subject: `New booking request from ${booking.name}`,
+        text: `${booking.name} (${booking.phone})\nJob: ${booking.jobType}\nWhen: ${preferredDate.toLocaleString("en-GB", { timeZone: "Europe/London" })}\n${booking.description ? `Notes: ${booking.description}` : ""}`.trim(),
+      });
+    } catch (err) {
+      console.error("Failed to send owner booking email:", err);
+      // SMS and calendar are the primary channels, so don't fail the request over this.
+    }
   }
 
   // Create a Google Calendar event for the requested slot.

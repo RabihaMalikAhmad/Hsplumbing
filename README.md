@@ -15,7 +15,7 @@ This guide assumes you've never set any of this up before. Follow it top to bott
   2. Harpreet gets an SMS immediately with the booking details.
   3. An event is created on his Google Calendar for the requested time.
   4. The customer gets a confirmation SMS.
-- **General enquiry form** (`/#enquiry`): a simpler "get in touch" form that emails Harpreet via Resend.
+- **General enquiry form** (`/#enquiry`): a simpler "get in touch" form that emails Harpreet directly.
 - **Admin page** (`/admin`): a single password protects a page listing every booking and enquiry, so
   Harpreet (or you) can check requests without digging through texts/emails.
 
@@ -26,7 +26,7 @@ This guide assumes you've never set any of this up before. Follow it top to bott
 - A free [Twilio](https://www.twilio.com/try-twilio) account (for SMS).
 - A [Google Cloud](https://console.cloud.google.com/) account (free, for Calendar integration) — any
   normal Google account works.
-- A free [Resend](https://resend.com) account (for the enquiry form email).
+- A Gmail account (for booking and enquiry email notifications).
 
 ## 2. Get the code running locally
 
@@ -45,7 +45,7 @@ cp .env.example .env
 ```
 
 Open `.env` and fill in values as you complete the steps below. You can start with just
-`DATABASE_URL="file:./dev.db"` and `ADMIN_PASSWORD` set, run the site, and add the Twilio/Google/Resend
+`DATABASE_URL="file:./dev.db"` and `ADMIN_PASSWORD` set, run the site, and add the Twilio/Google/Gmail
 keys as you set each one up — features that aren't configured yet will simply be skipped (the booking
 still saves, you just won't get the SMS/calendar side of it until it's configured).
 
@@ -107,14 +107,23 @@ anyone to log in.
 
 Refresh tokens don't expire under normal use, so this is a one-time setup.
 
-## 5. Set up Resend (email for the enquiry form)
+## 5. Set up email notifications (Gmail SMTP)
 
-1. Sign up free at https://resend.com.
-2. Go to **API Keys** in the dashboard, create a key, and copy it into `.env` as `RESEND_API_KEY`.
-3. Leave `EMAIL_FROM="onboarding@resend.dev"` to start — this works immediately with no extra setup and
-   is fine for a low-volume enquiry form. If you want emails to come from your own domain later, add and
-   verify it under **Domains** in Resend, then change `EMAIL_FROM` to an address on that domain.
-4. Set `OWNER_EMAIL` to the address enquiries should be sent to.
+Booking and enquiry notifications are emailed out through a Gmail account using an app password —
+no third-party email service or domain needed.
+
+1. Pick the Gmail account that should send these emails (a dedicated one is fine, or an existing one).
+2. Turn on **2-Step Verification** on that account: Google Account → Security → 2-Step Verification →
+   follow the prompts. This is required — app passwords don't exist until it's on.
+3. Once 2-Step Verification is on, go to https://myaccount.google.com/apppasswords, sign in again if
+   asked, type a name for it (e.g. "Reehal Plumbing website"), and click **Create**. Google shows a
+   16-character password once — copy it immediately, you can't view it again afterwards (you can always
+   generate a new one if you lose it).
+4. Set `GMAIL_USER` in `.env` to that Gmail address, and `GMAIL_APP_PASSWORD` to the 16-character app
+   password (spaces don't matter, with or without them both work).
+5. Set `OWNER_EMAIL` to the address that should receive booking and enquiry notifications
+   (e.g. `Reehal.Engineer@Hotmail.com`) — this can be a completely different address to `GMAIL_USER`,
+   which is just the account doing the sending.
 
 ## 6. Set the admin password
 
@@ -165,7 +174,7 @@ lib/
   prisma.ts               Prisma client singleton
   sms.ts                  Twilio helper
   googleCalendar.ts       Google Calendar helper
-  email.ts                Resend helper
+  email.ts                Gmail SMTP helper
   auth.ts                 admin password/session helpers
   phone.ts                UK phone number formatting for Twilio
 prisma/schema.prisma      database schema (Booking, Enquiry)
@@ -175,7 +184,7 @@ middleware.ts             protects /admin routes
 
 ## Notes
 
-- If Twilio, Google Calendar or Resend aren't configured, the relevant feature is skipped gracefully —
+- If Twilio, Google Calendar or Gmail aren't configured, the relevant feature is skipped gracefully —
   bookings and enquiries are always saved to the database and visible in `/admin` either way.
 - The booking form assumes UK phone numbers; `lib/phone.ts` converts common formats
   (`07xxx xxxxxx`, `+447xxx`, `447xxx`) to the E.164 format Twilio requires.

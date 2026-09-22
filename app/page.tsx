@@ -21,6 +21,12 @@ const recentWork = [
     title: "Boiler integrated into a kitchen cupboard",
     caption: "Baxi Eco Compact fitted neatly into existing kitchen cabinetry.",
   },
+  {
+    src: "/gallery/vented-cylinder-pipework.jpg",
+    alt: "Vented hot water cylinder with new copper pipework and pump",
+    title: "Vented cylinder & pipework",
+    caption: "New vented hot water cylinder plumbed in with a full copper pipework run.",
+  },
 ];
 
 export default function Home() {

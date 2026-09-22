@@ -1,24 +1,26 @@
 import Image from "next/image";
 import BookingForm from "@/components/BookingForm";
 import EnquiryForm from "@/components/EnquiryForm";
-import Reveal from "@/components/Reveal";
 
-const trustBadges = [
-  "Gas Safe Registered",
-  "Fully Insured",
-  "Local to Smethwick & Birmingham",
-  "Emergency Callouts Available",
-  "Friendly & Reliable Service",
-];
-
-const galleryPhotos = [
-  { src: "/gallery/gledhill-thermal-store.jpg", alt: "Recently installed Gledhill open vented thermal store" },
-  { src: "/gallery/worcester-combi-swap.jpg", alt: "Worcester combi boiler swap at a period property in Malvern" },
-  { src: "/gallery/worcester-combi-cheltenham.jpg", alt: "New Worcester combi boiler installed in Cheltenham" },
-  { src: "/gallery/worcester-combi-freeguarantee.jpg", alt: "Worcester combi boiler install with 10 year guarantee" },
-  { src: "/gallery/baxi-eco-compact-cupboard.jpg", alt: "Baxi Eco Compact combi boiler installed in a kitchen cupboard" },
-  { src: "/gallery/boiler-swap-before.jpg", alt: "Old boiler before replacement", objectPosition: "top" },
-  { src: "/gallery/boiler-swap-after.jpg", alt: "New Baxi combi boiler after installation" },
+const recentWork = [
+  {
+    src: "/gallery/gledhill-thermal-store.jpg",
+    alt: "Recently installed Gledhill open vented thermal store",
+    title: "Open vented thermal store",
+    caption: "New Gledhill thermal store installed to replace an ageing hot water system.",
+  },
+  {
+    src: "/gallery/worcester-combi-cheltenham.jpg",
+    alt: "Worcester combi boiler installed in a period property",
+    title: "Combi boiler in a period property",
+    caption: "Worcester combi boiler swap, carefully routed around original exposed beams.",
+  },
+  {
+    src: "/gallery/baxi-eco-compact-cupboard.jpg",
+    alt: "Baxi Eco Compact combi boiler installed in a kitchen cupboard",
+    title: "Boiler integrated into a kitchen cupboard",
+    caption: "Baxi Eco Compact fitted neatly into existing kitchen cabinetry.",
+  },
 ];
 
 export default function Home() {
@@ -39,11 +41,16 @@ export default function Home() {
                 <a href="#service-bathroom-fitting">Bathroom fitting</a>
               </div>
             </div>
-            <a href="#pricing">Pricing</a>
-            <a href="#reviews">Reviews</a>
-            <a href="#booking">Book online</a>
-            <a href="#faq">FAQ</a>
+            <a href="#our-work">Our work</a>
+            <a href="#about">About</a>
+            <a href="#contact">Contact</a>
           </nav>
+          <a className="header-call" href="tel:07857873515">
+            <svg viewBox="0 0 24 24" fill="currentColor" stroke="none">
+              <path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.2.2 2.4.6 3.6.1.4 0 .8-.3 1L6.6 10.8z" />
+            </svg>
+            Call Harpreet
+          </a>
         </div>
       </div>
 
@@ -51,32 +58,35 @@ export default function Home() {
         <svg viewBox="0 0 24 24" fill="currentColor" stroke="none">
           <path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.2.2 2.4.6 3.6.1.4 0 .8-.3 1L6.6 10.8z" />
         </svg>
-        Call now — 07857 873515
+        Call Harpreet — 07857 873515
       </a>
 
-      <section className="hero-full">
-        <div className="hero-bg-wrap">
-          <Image
-            src="/hero/hero-boiler-install.jpg"
-            alt="A recently completed boiler installation in a period property"
-            fill
-            priority
-            sizes="100vw"
-          />
-        </div>
-        <div className="hero-content">
-          <div className="inner">
+      <section className="hero-split">
+        <div className="wrap hero-grid">
+          <div className="hero-text">
             <div className="kicker">Smethwick &amp; Birmingham</div>
-            <h1>Burst pipe or boiler down? Get a local plumber out today.</h1>
+            <h1>Your local plumber in Smethwick.</h1>
             <p className="lead">
-              General plumbing, emergency callouts, boiler repairs and bathroom fitting — no job too small, no wait
-              for a callback.
+              Plumbing repairs, boiler care and bathroom fitting across Smethwick and surrounding areas.
             </p>
             <div className="cta-row">
-              <a className="btn-outline" href="#booking">
-                Book online
+              <a className="btn-primary" href="tel:07857873515">
+                Call Harpreet
+              </a>
+              <a className="btn-outline" href="#enquiry">
+                Request a quote
               </a>
             </div>
+          </div>
+          <div className="hero-photo">
+            <Image
+              src="/gallery/boiler-swap-after.jpg"
+              alt="A recently completed Baxi combi boiler installation"
+              fill
+              priority
+              sizes="(max-width: 860px) 90vw, 45vw"
+              style={{ objectFit: "cover" }}
+            />
           </div>
         </div>
       </section>
@@ -108,55 +118,11 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="marquee-section">
-        <div className="wrap">
-          <Reveal>
-            <h2>Trusted &amp; Reliable</h2>
-            <p className="intro">
-              A straightforward, properly insured tradesman — here&apos;s what customers can count on.
-            </p>
-          </Reveal>
-        </div>
-        <div className="marquee-track-wrap">
-          <div className="marquee-track">
-            {[...trustBadges, ...trustBadges].map((badge, i) => (
-              <div className="marquee-chip" key={`${badge}-${i}`}>
-                <svg viewBox="0 0 24 24" fill="none" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M20 6L9 17l-5-5" />
-                </svg>
-                {badge}
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      <section className="section area alt">
-        <div className="wrap">
-          <Reveal>
-            <h2>Areas covered</h2>
-            <p className="intro">Based in Smethwick, covering the surrounding areas.</p>
-            <div className="list">
-              <span>Smethwick</span>
-              <span>Birmingham</span>
-              <span>West Bromwich</span>
-              <span>Oldbury</span>
-              <span>Edgbaston</span>
-              <span>Sandwell</span>
-            </div>
-            <p className="note">Not sure if you're in range? Just call — happy to check.</p>
-          </Reveal>
-        </div>
-      </section>
-
       <section className="section" id="services">
         <div className="wrap">
-          <Reveal>
-            <h2>Services</h2>
+                      <h2>Services</h2>
             <p className="intro">Straightforward plumbing and heating work, done properly the first time.</p>
-          </Reveal>
-          <Reveal delay={80}>
-            <div className="services">
+                                <div className="services">
               <div className="service" id="service-general-plumbing">
                 <div className="icon">
                   <svg viewBox="0 0 24 24" fill="none" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
@@ -165,6 +131,7 @@ export default function Home() {
                 </div>
                 <h3>General plumbing</h3>
                 <p>Leaks, blockages, taps, pipework and everyday repairs around the home.</p>
+                <a className="service-link" href="#booking">Book this job →</a>
               </div>
               <div className="service" id="service-emergency-callouts">
                 <div className="icon">
@@ -174,7 +141,8 @@ export default function Home() {
                   </svg>
                 </div>
                 <h3>Emergency callouts</h3>
-                <p>Same-day response for burst pipes, no water and other jobs that can't wait.</p>
+                <p>Same-day response for burst pipes, no water and other jobs that can&apos;t wait.</p>
+                <a className="service-link" href="tel:07857873515">Call now →</a>
               </div>
               <div className="service" id="service-boiler-services">
                 <div className="icon">
@@ -184,6 +152,7 @@ export default function Home() {
                 </div>
                 <h3>Boiler services</h3>
                 <p>Boiler repairs, servicing and installation to keep your heating and hot water running.</p>
+                <a className="service-link" href="#booking">Book this job →</a>
               </div>
               <div className="service" id="service-bathroom-fitting">
                 <div className="icon">
@@ -193,82 +162,63 @@ export default function Home() {
                 </div>
                 <h3>Bathroom fitting</h3>
                 <p>Full or partial bathroom fits, from a new suite to a full refit.</p>
+                <a className="service-link" href="#enquiry">Request a quote →</a>
               </div>
             </div>
-          </Reveal>
+                  </div>
+      </section>
 
-          <Reveal delay={120}>
-            <div className="gallery">
-              {galleryPhotos.map((photo) => (
-                <div className="photo-slot" key={photo.src}>
-                  <Image
-                    src={photo.src}
-                    alt={photo.alt}
-                    fill
-                    sizes="(max-width: 620px) 50vw, 33vw"
-                    style={{ objectFit: "cover", objectPosition: photo.objectPosition ?? "center" }}
-                  />
+      <section className="section alt" id="about">
+        <div className="wrap">
+                      <h2>Meet Harpreet</h2>
+            <p className="intro">Local, straightforward, and easy to reach when it matters.</p>
+                                <div className="meet">
+              <div className="meet-avatar">HS</div>
+              <div className="meet-body">
+                <h3>Harpreet Singh</h3>
+                <p>
+                  Harpreet is a Gas Safe registered plumber based in Smethwick. He handles jobs himself, from a
+                  dripping tap to a full boiler swap, so you always know who&apos;s turning up and who to call
+                  afterwards if you need anything. He answers the phone directly, keeps pricing upfront before
+                  any work starts, and gets to emergency jobs quickly wherever possible.
+                </p>
+              </div>
+            </div>
+                  </div>
+      </section>
+
+      <section className="section" id="our-work">
+        <div className="wrap">
+                      <h2>Recent work</h2>
+            <p className="intro">A few recent jobs, from full boiler swaps to hot water system upgrades.</p>
+                                <div className="recent-work">
+              {recentWork.map((job) => (
+                <div className="work-card" key={job.src}>
+                  <div className="work-photo">
+                    <Image
+                      src={job.src}
+                      alt={job.alt}
+                      fill
+                      loading="eager"
+                      sizes="(max-width: 860px) 50vw, 33vw"
+                      style={{ objectFit: "cover" }}
+                    />
+                  </div>
+                  <div className="work-caption">
+                    <h3>{job.title}</h3>
+                    <p>{job.caption}</p>
+                  </div>
                 </div>
               ))}
             </div>
-          </Reveal>
-        </div>
+                  </div>
       </section>
 
-      <section className="section why">
+      <section className="section alt" id="pricing">
         <div className="wrap">
-          <Reveal>
-            <h2>Why call Harpreet</h2>
-            <p className="intro">Local, straightforward, and easy to reach when it matters.</p>
-          </Reveal>
-          <div className="why-grid">
-            <Reveal delay={80}>
-              <div className="points">
-                <div className="point">
-                  <h3>Based locally</h3>
-                  <p>Works out of Smethwick, so he's never far from your door.</p>
-                </div>
-                <div className="point">
-                  <h3>Fast response</h3>
-                  <p>Answers the phone and gets to emergency jobs quickly.</p>
-                </div>
-                <div className="point">
-                  <h3>Fair, upfront pricing</h3>
-                  <p>You'll know the cost before any work starts — no surprises.</p>
-                </div>
-                <div className="point">
-                  <h3>All-round trade</h3>
-                  <p>From a dripping tap to a full bathroom refit, one number to call.</p>
-                </div>
-              </div>
-              <p className="certline">
-                <strong>Gas Safe registered</strong> — Reg No. [insert Gas Safe registration number here]. Fully
-                insured — [insert insurer/policy detail if you want it shown].
-              </p>
-            </Reveal>
-            <Reveal delay={200}>
-              <div className="why-photo">
-                <Image
-                  src="/gallery/boiler-swap-after.jpg"
-                  alt="A finished Baxi boiler installation"
-                  fill
-                  sizes="(max-width: 820px) 90vw, 40vw"
-                  style={{ objectFit: "cover" }}
-                />
-              </div>
-            </Reveal>
-          </div>
-        </div>
-      </section>
-
-      <section className="section" id="pricing">
-        <div className="wrap">
-          <Reveal>
-            <h2>Pricing</h2>
+                      <h2>Pricing</h2>
             <p className="intro">Clear costs before any work starts.</p>
-          </Reveal>
-          <Reveal delay={80}>
-            <div className="pricing">
+                                <div className="pricing">
               <div className="price-card">
                 <h3>Standard call-out</h3>
                 <div className="amount">[insert £]</div>
@@ -288,55 +238,32 @@ export default function Home() {
             <p className="pricing-caveat">
               Bathroom fits and larger jobs are quoted individually after a quick look at the work.
             </p>
-          </Reveal>
-        </div>
+                  </div>
       </section>
 
-      <section className="section alt" id="reviews">
+      <section className="section area" id="areas">
         <div className="wrap">
-          <Reveal>
-            <h2>What customers say</h2>
-            <p className="intro">[Swap these placeholders for real reviews once you have a few.]</p>
-          </Reveal>
-          <Reveal delay={80}>
-            <div className="reviews">
-              <div className="review">
-                <div className="quote-mark">&ldquo;</div>
-                <p className="text">[Insert customer review here]</p>
-                <p className="author">— [Name], [area]</p>
-              </div>
-              <div className="review">
-                <div className="quote-mark">&ldquo;</div>
-                <p className="text">[Insert customer review here]</p>
-                <p className="author">— [Name], [area]</p>
-              </div>
+                      <h2>Areas covered</h2>
+            <p className="intro">Based in Smethwick, covering the surrounding areas.</p>
+            <div className="list">
+              <span>Smethwick</span>
+              <span>Birmingham</span>
+              <span>West Bromwich</span>
+              <span>Oldbury</span>
+              <span>Edgbaston</span>
+              <span>Sandwell</span>
             </div>
-          </Reveal>
-        </div>
+            <p className="note">Not sure if you&apos;re in range? Just call — happy to check.</p>
+                  </div>
       </section>
 
-      <section className="section booking" id="booking">
+      <section className="section alt" id="faq">
         <div className="wrap">
-          <Reveal>
-            <h2>Book online</h2>
-            <p className="intro">Fill in your details and it'll be sent straight to Harpreet to confirm.</p>
-          </Reveal>
-          <Reveal delay={80}>
-            <BookingForm />
-          </Reveal>
-        </div>
-      </section>
-
-      <section className="section" id="faq">
-        <div className="wrap">
-          <Reveal>
-            <h2>Common questions</h2>
-          </Reveal>
-          <Reveal delay={80}>
-            <div className="faq">
+                      <h2>Common questions</h2>
+                                <div className="faq">
               <details>
                 <summary>How quickly can you get to an emergency?</summary>
-                <p>[Insert typical response time, e.g. "Usually within the hour for emergencies in the local area."]</p>
+                <p>[Insert typical response time, e.g. &quot;Usually within the hour for emergencies in the local area.&quot;]</p>
               </details>
               <details>
                 <summary>Do you charge a call-out fee?</summary>
@@ -344,34 +271,37 @@ export default function Home() {
               </details>
               <details>
                 <summary>Are you Gas Safe registered and insured?</summary>
-                <p>[Insert answer — see certification note above.]</p>
+                <p>[Insert answer — see trust strip above.]</p>
               </details>
               <details>
                 <summary>What areas do you cover?</summary>
-                <p>Based in Smethwick, covering Birmingham, West Bromwich, Oldbury, Edgbaston and Sandwell. Not sure if you're in range? Just call.</p>
+                <p>Based in Smethwick, covering Birmingham, West Bromwich, Oldbury, Edgbaston and Sandwell. Not sure if you&apos;re in range? Just call.</p>
               </details>
               <details>
                 <summary>What payment methods do you accept?</summary>
                 <p>[Insert accepted payment methods, e.g. cash, bank transfer, card.]</p>
               </details>
             </div>
-          </Reveal>
-        </div>
+                  </div>
       </section>
 
-      <section className="section" id="enquiry">
+      <section className="section" id="booking">
         <div className="wrap">
-          <Reveal>
-            <h2>General enquiry</h2>
-            <p className="intro">Not ready to book? Send a quick message and we'll get back to you.</p>
-          </Reveal>
-          <Reveal delay={80}>
-            <EnquiryForm />
-          </Reveal>
-        </div>
+                      <h2>Book online</h2>
+            <p className="intro">Fill in your details and it&apos;ll be sent straight to Harpreet to confirm.</p>
+                                <BookingForm />
+                  </div>
       </section>
 
-      <section className="contact">
+      <section className="section alt" id="enquiry">
+        <div className="wrap">
+                      <h2>Request a quote</h2>
+            <p className="intro">Not ready to book a slot? Tell us about the job and we&apos;ll get back to you.</p>
+                                <EnquiryForm />
+                  </div>
+      </section>
+
+      <section className="contact" id="contact">
         <div className="wrap grid">
           <div>
             <h2>Got a plumbing job?</h2>
@@ -384,10 +314,15 @@ export default function Home() {
       </section>
 
       <footer className="bottom">
-        <div className="edit-note">
-          Placeholders marked in [brackets] — swap in real details, photos and reviews as they come in.
+        <div className="wrap">
+          <span>Harpreet Singh Plumbing &amp; Heating — Smethwick &amp; Birmingham</span>
+          <span>
+            <a href="tel:07857873515">07857 873515</a>
+          </span>
         </div>
-        Harpreet Singh Plumbing &amp; Heating — Smethwick &amp; Birmingham
+        <div className="wrap footer-note">
+          Placeholders marked in [brackets] — swap in real details, pricing and reviews as they come in.
+        </div>
       </footer>
     </>
   );

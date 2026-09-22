@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Inter:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap');
 
 :root{
   --ink: #15181B;
@@ -27,12 +27,12 @@ body{
   line-height: 1.65;
 }
 h1,h2,h3{
-  font-family: 'Fraunces', serif;
+  font-family: 'Sora', sans-serif;
   color: var(--ink);
   margin: 0;
-  line-height: 1.08;
-  letter-spacing: -0.01em;
-  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -0.015em;
+  font-weight: 700;
 }
 a{ color: inherit; }
 img{ max-width: 100%; display: block; }
@@ -77,14 +77,14 @@ img{ max-width: 100%; display: block; }
   .topbar .wrap{ padding-right: 0; }
 }
 .brand{
-  font-family:'Fraunces', serif;
+  font-family:'Sora', sans-serif;
   font-weight: 700;
   font-size: clamp(1.3rem, 2.1vw, 1.7rem);
   letter-spacing: 0.01em;
   color: var(--white);
   text-shadow: 0 2px 12px rgba(0,0,0,0.45);
 }
-.brand span{ color: var(--brass-light); font-style: italic; }
+.brand span{ color: var(--brass-light); }
 .topbar nav{ display:flex; gap: 26px; font-size: 1.05rem; }
 .topbar nav a{
   text-decoration:none;
@@ -226,9 +226,9 @@ img{ max-width: 100%; display: block; }
 .hero-content h1{
   font-size: clamp(2rem, 4.4vw, 3.1rem);
   color: var(--white);
-  font-weight: 600;
+  font-weight: 700;
   max-width: 16ch;
-  font-style: italic;
+  letter-spacing: -0.02em;
 }
 .hero-content p.lead{
   margin-top: 16px;
@@ -319,7 +319,7 @@ img{ max-width: 100%; display: block; }
 .service h3{
   font-size: 1.08rem;
   font-weight: 600;
-  font-family: 'Fraunces', serif;
+  font-family: 'Sora', sans-serif;
 }
 .service p{
   margin: 10px 0 0;
@@ -451,7 +451,7 @@ img{ max-width: 100%; display: block; }
 .price-card:nth-child(2):hover{ transform: scale(1.06) translateY(-6px); }
 .price-card h3{ font-size: 0.98rem; font-weight: 500; color: var(--text-soft); font-family: 'Inter', sans-serif; }
 .price-card .amount{
-  font-family:'Fraunces', serif;
+  font-family:'Sora', sans-serif;
   font-size: 1.7rem;
   color: var(--ink);
   margin-top: 12px;
@@ -484,7 +484,7 @@ img{ max-width: 100%; display: block; }
 .review:nth-child(even){ transform: rotate(0.6deg); }
 .review:hover{ transform: rotate(0deg) translateY(-4px); }
 .review .quote-mark{
-  font-family:'Fraunces', serif;
+  font-family:'Sora', sans-serif;
   font-size: 2.4rem;
   color: var(--brass-light);
   line-height: 1;
@@ -586,7 +586,7 @@ img{ max-width: 100%; display: block; }
 }
 .faq details[open]{ box-shadow: 0 20px 40px -26px rgba(var(--shadow), 0.5); }
 .faq summary{
-  font-family:'Fraunces', serif;
+  font-family:'Sora', sans-serif;
   font-weight: 600;
   font-size: 1.05rem;
   color: var(--ink);

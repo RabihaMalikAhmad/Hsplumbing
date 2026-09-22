@@ -3,6 +3,14 @@ import BookingForm from "@/components/BookingForm";
 import EnquiryForm from "@/components/EnquiryForm";
 import Reveal from "@/components/Reveal";
 
+const trustBadges = [
+  "Gas Safe Registered",
+  "Fully Insured",
+  "Local to Smethwick & Birmingham",
+  "Emergency Callouts Available",
+  "Friendly & Reliable Service",
+];
+
 const galleryPhotos = [
   { src: "/gallery/gledhill-thermal-store.jpg", alt: "Recently installed Gledhill open vented thermal store" },
   { src: "/gallery/worcester-combi-swap.jpg", alt: "Worcester combi boiler swap at a period property in Malvern" },
@@ -22,7 +30,15 @@ export default function Home() {
             Harpreet Singh <span>Plumbing &amp; Heating</span>
           </div>
           <nav>
-            <a href="#services">Services</a>
+            <div className="nav-dropdown">
+              <a href="#services">Services ▾</a>
+              <div className="dropdown-menu">
+                <a href="#service-general-plumbing">General plumbing</a>
+                <a href="#service-emergency-callouts">Emergency callouts</a>
+                <a href="#service-boiler-services">Boiler services</a>
+                <a href="#service-bathroom-fitting">Bathroom fitting</a>
+              </div>
+            </div>
             <a href="#pricing">Pricing</a>
             <a href="#reviews">Reviews</a>
             <a href="#booking">Book online</a>
@@ -92,6 +108,29 @@ export default function Home() {
         </div>
       </div>
 
+      <div className="marquee-section">
+        <div className="wrap">
+          <Reveal>
+            <h2>Trusted &amp; Reliable</h2>
+            <p className="intro">
+              A straightforward, properly insured tradesman — here&apos;s what customers can count on.
+            </p>
+          </Reveal>
+        </div>
+        <div className="marquee-track-wrap">
+          <div className="marquee-track">
+            {[...trustBadges, ...trustBadges].map((badge, i) => (
+              <div className="marquee-chip" key={`${badge}-${i}`}>
+                <svg viewBox="0 0 24 24" fill="none" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M20 6L9 17l-5-5" />
+                </svg>
+                {badge}
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
       <section className="section area alt">
         <div className="wrap">
           <Reveal>
@@ -118,7 +157,7 @@ export default function Home() {
           </Reveal>
           <Reveal delay={80}>
             <div className="services">
-              <div className="service">
+              <div className="service" id="service-general-plumbing">
                 <div className="icon">
                   <svg viewBox="0 0 24 24" fill="none" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
                     <path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.3-3.3a4 4 0 01-5.4 5.4L6.3 20.7a1.4 1.4 0 01-2-2L13.6 9.4a4 4 0 015.4-5.4l-3.3 3.3z" />
@@ -127,7 +166,7 @@ export default function Home() {
                 <h3>General plumbing</h3>
                 <p>Leaks, blockages, taps, pipework and everyday repairs around the home.</p>
               </div>
-              <div className="service">
+              <div className="service" id="service-emergency-callouts">
                 <div className="icon">
                   <svg viewBox="0 0 24 24" fill="none" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
                     <path d="M12 2v4M12 18v4M4.9 4.9l2.8 2.8M16.3 16.3l2.8 2.8M2 12h4M18 12h4M4.9 19.1l2.8-2.8M16.3 7.7l2.8-2.8" />
@@ -137,7 +176,7 @@ export default function Home() {
                 <h3>Emergency callouts</h3>
                 <p>Same-day response for burst pipes, no water and other jobs that can't wait.</p>
               </div>
-              <div className="service">
+              <div className="service" id="service-boiler-services">
                 <div className="icon">
                   <svg viewBox="0 0 24 24" fill="none" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
                     <path d="M8 3c-1.5 2-1 3.5 0 5-1.8.9-3 2.8-3 5a5 5 0 0010 0c0-1.6-.6-2.7-1.4-3.8-.9 1-1 2-.6 3a2 2 0 11-3.8-1c.9-1.6 1-3.4-1.2-8.2z" />
@@ -146,7 +185,7 @@ export default function Home() {
                 <h3>Boiler services</h3>
                 <p>Boiler repairs, servicing and installation to keep your heating and hot water running.</p>
               </div>
-              <div className="service">
+              <div className="service" id="service-bathroom-fitting">
                 <div className="icon">
                   <svg viewBox="0 0 24 24" fill="none" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
                     <path d="M3 12h18M4 12V7a2 2 0 012-2h3v2M7 21l-1-4M17 21l1-4M6 12a2 2 0 002 2h8a2 2 0 002-2" />

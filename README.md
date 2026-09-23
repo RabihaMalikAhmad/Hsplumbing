@@ -131,12 +131,26 @@ no third-party email service or domain needed.
    (e.g. `Reehal.Engineer@Hotmail.com`) — this can be a completely different address to `GMAIL_USER`,
    which is just the account doing the sending.
 
-## 6. Set the admin password
+## 6. Set up Google Analytics 4 (optional)
+
+1. In Google Analytics, go to **Admin > Data Streams**, pick (or create) the web stream for this site, and
+   copy its **Measurement ID** (format `G-XXXXXXXXXX`).
+2. Set `NEXT_PUBLIC_GA_MEASUREMENT_ID` in `.env` to that value. Leave it blank to skip analytics entirely —
+   nothing else changes if it's not set.
+3. Every click on a `tel:` link (the header call button, the sticky mobile call bar, the hero and service
+   card call links, the contact section) fires a `call_button_click` event automatically — no per-button
+   setup needed.
+4. To treat that as a conversion in GA4's reports: once the event has fired at least once (it only appears
+   in the list after that), go to **Admin > Events**, find `call_button_click`, and toggle **Mark as key
+   event**. This one step has to be done by hand in the GA4 dashboard — it isn't something the website's
+   code can set.
+
+## 7. Set the admin password
 
 Set `ADMIN_PASSWORD` in `.env` to anything memorable but not guessable. This is the only password used by
 the site — there's no separate user accounts system.
 
-## 7. Deploy to Vercel
+## 8. Deploy to Vercel
 
 The database is already Postgres (see below), so no schema changes are needed before deploying.
 

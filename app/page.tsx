@@ -22,10 +22,11 @@ const recentWork = [
     caption: "Baxi Eco Compact fitted neatly into existing kitchen cabinetry.",
   },
   {
-    src: "/gallery/vented-cylinder-pipework.jpg",
-    alt: "Vented hot water cylinder with new copper pipework and pump",
-    title: "Vented cylinder & pipework",
-    caption: "New vented hot water cylinder plumbed in with a full copper pipework run.",
+    src: "/gallery/kitchen-tap-install.jpg",
+    alt: "Chrome three-way filtered kitchen tap installed above a sink",
+    title: "Kitchen tap install",
+    caption: "Three-way filtered tap fitted and plumbed in above the kitchen sink.",
+    tall: true,
   },
 ];
 
@@ -247,7 +248,7 @@ export default function Home() {
                                 <div className="recent-work">
               {recentWork.map((job) => (
                 <div className="work-card" key={job.src}>
-                  <div className="work-photo">
+                  <div className={`work-photo${job.tall ? " tall" : ""}`}>
                     <Image
                       src={job.src}
                       alt={job.alt}
@@ -313,6 +314,13 @@ export default function Home() {
                   <span className="review-stars" aria-hidden="true">★★★★★</span>
                 </div>
                 <p className="review-date">Google review · a day ago</p>
+                <p>
+                  &quot;Harpreet was brilliant from start to finish. He gave me clear, honest advice about
+                  what my heating actually needed. When I had a burst pipe, he came out for the emergency
+                  call out really quickly and sorted it properly on the spot. Reliable, trustworthy and
+                  very hardworking. Would recommend him to anyone. Very friendly guy too, did both the
+                  boiler and heating. 10/10&quot;
+                </p>
               </div>
             </div>
             <a

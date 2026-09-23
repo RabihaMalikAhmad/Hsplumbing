@@ -2,7 +2,7 @@
 
 A full-stack booking website for Reehal Plumbing & Heating (Smethwick & Birmingham), run by Harpreet Singh, built with
 Next.js (App Router). The original static design and copy are preserved exactly — this adds a real
-booking form, SMS alerts, Google Calendar integration, a general enquiry form, and a password-protected
+booking form, email alerts, Google Calendar integration, a general enquiry form, and a password-protected
 admin page.
 
 This guide assumes you've never set any of this up before. Follow it top to bottom.
@@ -12,21 +12,24 @@ This guide assumes you've never set any of this up before. Follow it top to bott
 - **Booking form** (`/#booking`): a customer fills in their name, phone, job type, preferred date/time
   and a short description. On submit:
   1. The booking is saved to a database.
-  2. Harpreet gets an SMS immediately with the booking details.
+  2. Harpreet gets an email immediately with the booking details.
   3. An event is created on his Google Calendar for the requested time.
-  4. The customer gets a confirmation SMS.
 - **General enquiry form** (`/#enquiry`): a simpler "get in touch" form that emails Harpreet directly.
 - **Admin page** (`/admin`): a single password protects a page listing every booking and enquiry, so
   Harpreet (or you) can check requests without digging through texts/emails.
+
+SMS notifications (via Twilio) are built into the codebase (`lib/sms.ts`, `lib/phone.ts`) but not currently
+wired into the booking flow — Harpreet hasn't verified his number on the Twilio trial account yet. See the
+"Twilio (SMS)" section below if that changes and SMS alerts need switching back on.
 
 ## 1. Prerequisites
 
 - [Node.js](https://nodejs.org/) 18.18 or newer installed.
 - A free [Vercel](https://vercel.com) account (for deployment) — sign up with GitHub.
-- A free [Twilio](https://www.twilio.com/try-twilio) account (for SMS).
 - A [Google Cloud](https://console.cloud.google.com/) account (free, for Calendar integration) — any
   normal Google account works.
 - A Gmail account (for booking and enquiry email notifications).
+- Optional: a free [Twilio](https://www.twilio.com/try-twilio) account (for SMS, currently unused — see above).
 
 ## 2. Get the code running locally
 
@@ -64,19 +67,22 @@ npm run dev
 Visit http://localhost:3000. Visit http://localhost:3000/admin to see the admin login (password is
 whatever you set as `ADMIN_PASSWORD`).
 
-## 3. Set up Twilio (SMS)
+## 3. Set up Twilio (SMS) — optional, not currently used
+
+The booking flow doesn't send SMS right now (see the note at the top of this file), so this step can be
+skipped entirely. Come back to it if SMS alerts get switched back on later.
 
 1. Sign up at https://www.twilio.com/try-twilio (free trial includes credit and a free number).
 2. On the [Twilio Console](https://console.twilio.com) dashboard, copy your **Account SID** and
    **Auth Token** into `.env` as `TWILIO_ACCOUNT_SID` and `TWILIO_AUTH_TOKEN`.
 3. Under **Phone Numbers > Manage > Buy a number**, get a number capable of SMS (trial accounts get one
    free). Copy it in E.164 format (e.g. `+441234567890`) into `TWILIO_FROM_NUMBER`.
-4. Set `OWNER_PHONE` to Harpreet's mobile number — `07857873515` is already filled in for you.
+4. Set `OWNER_PHONE` to whichever mobile number should receive the SMS alerts.
 
 **Note on Twilio trial accounts:** a trial account can only send SMS to phone numbers you've verified in
-the Twilio Console (under **Phone Numbers > Verified Caller IDs**). Verify Harpreet's number there while
-testing. To send to any customer's number without verifying it first, upgrade the Twilio account (pay-as-
-you-go — no ongoing subscription fee, you only pay a few pence per SMS).
+the Twilio Console (under **Phone Numbers > Verified Caller IDs**). To send to any customer's number
+without verifying it first, upgrade the Twilio account (pay-as-you-go — no ongoing subscription fee, you
+only pay a few pence per SMS).
 
 ## 4. Set up Google Calendar
 
@@ -164,7 +170,7 @@ app/
   page.tsx              the homepage (converted from the original static HTML)
   globals.css           all styling (unchanged design, plus new form styles)
   admin/                password-protected admin dashboard
-  api/booking/route.ts  booking form handler (DB + SMS + Calendar)
+  api/booking/route.ts  booking form handler (DB + email + Calendar)
   api/contact/route.ts  general enquiry form handler (DB + email)
   api/admin/            admin login/logout
 components/
@@ -172,11 +178,11 @@ components/
   EnquiryForm.tsx         the general enquiry form (client component)
 lib/
   prisma.ts               Prisma client singleton
-  sms.ts                  Twilio helper
+  sms.ts                  Twilio helper (not currently used, see note above)
   googleCalendar.ts       Google Calendar helper
   email.ts                Gmail SMTP helper
   auth.ts                 admin password/session helpers
-  phone.ts                UK phone number formatting for Twilio
+  phone.ts                UK phone number formatting for Twilio (not currently used)
 prisma/schema.prisma      database schema (Booking, Enquiry)
 middleware.ts             protects /admin routes
 .env.example              every required secret, with instructions

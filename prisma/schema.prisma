@@ -27,7 +27,7 @@ model Booking {
   preferredAt String
   description String?
   status      String   @default("new") // new | confirmed | cancelled
-  smsSent     Boolean  @default(false)
+  emailSent   Boolean  @default(false)
   calendarEventId String?
   createdAt   DateTime @default(now())
 }

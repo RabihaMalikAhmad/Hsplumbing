@@ -36,7 +36,7 @@ export default async function AdminPage() {
                 <th>Preferred time</th>
                 <th>Description</th>
                 <th>Status</th>
-                <th>SMS sent</th>
+                <th>Email sent</th>
                 <th>Calendar</th>
               </tr>
             </thead>
@@ -58,7 +58,7 @@ export default async function AdminPage() {
                   <td>
                     <span className={`badge ${b.status}`}>{b.status}</span>
                   </td>
-                  <td>{b.smsSent ? "Yes" : "No"}</td>
+                  <td>{b.emailSent ? "Yes" : "No"}</td>
                   <td>{b.calendarEventId ? "Yes" : "No"}</td>
                 </tr>
               ))}

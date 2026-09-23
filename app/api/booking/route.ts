@@ -1,8 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
-import { sendSms } from "@/lib/sms";
 import { createCalendarEvent } from "@/lib/googleCalendar";
-import { toE164UK } from "@/lib/phone";
 import { sendEmail } from "@/lib/email";
 
 export async function POST(req: NextRequest) {
@@ -44,25 +42,8 @@ export async function POST(req: NextRequest) {
   });
 
   const warnings: string[] = [];
-  const ownerPhone = process.env.OWNER_PHONE;
 
-  // Notify Harpreet by SMS immediately — best-effort, does not block the booking.
-  if (ownerPhone) {
-    try {
-      await sendSms(
-        toE164UK(ownerPhone),
-        `New booking request:\n${booking.name} (${booking.phone})\nJob: ${booking.jobType}\nWhen: ${preferredDate.toLocaleString("en-GB", { timeZone: "Europe/London" })}\n${booking.description ? `Notes: ${booking.description}` : ""}`.trim()
-      );
-      await prisma.booking.update({ where: { id: booking.id }, data: { smsSent: true } });
-    } catch (err) {
-      console.error("Failed to send owner SMS:", err);
-      warnings.push("Could not send SMS notification to Harpreet — please also call/text directly.");
-    }
-  } else {
-    warnings.push("OWNER_PHONE is not configured — no SMS notification was sent.");
-  }
-
-  // Notify Harpreet by email too, as a second channel alongside the SMS.
+  // Notify Harpreet by email — the primary notification channel for now.
   const ownerEmail = process.env.OWNER_EMAIL;
   if (ownerEmail) {
     try {
@@ -71,10 +52,13 @@ export async function POST(req: NextRequest) {
         subject: `New booking request from ${booking.name}`,
         text: `${booking.name} (${booking.phone})\nJob: ${booking.jobType}\nWhen: ${preferredDate.toLocaleString("en-GB", { timeZone: "Europe/London" })}\n${booking.description ? `Notes: ${booking.description}` : ""}`.trim(),
       });
+      await prisma.booking.update({ where: { id: booking.id }, data: { emailSent: true } });
     } catch (err) {
       console.error("Failed to send owner booking email:", err);
-      // SMS and calendar are the primary channels, so don't fail the request over this.
+      warnings.push("Could not email Harpreet about this booking — please also call/text directly.");
     }
+  } else {
+    warnings.push("OWNER_EMAIL is not configured — no email notification was sent.");
   }
 
   // Create a Google Calendar event for the requested slot.
@@ -93,17 +77,6 @@ export async function POST(req: NextRequest) {
   } catch (err) {
     console.error("Failed to create calendar event:", err);
     warnings.push("Could not add this to Google Calendar automatically — Harpreet will confirm manually.");
-  }
-
-  // Confirmation SMS to the customer.
-  try {
-    await sendSms(
-      toE164UK(booking.phone),
-      `Hi ${booking.name}, thanks for your booking request with Reehal Plumbing & Heating for ${preferredDate.toLocaleString("en-GB", { timeZone: "Europe/London" })}. Harpreet will confirm shortly. Call/text 07857 873515 with any questions.`
-    );
-  } catch (err) {
-    console.error("Failed to send customer confirmation SMS:", err);
-    warnings.push("Could not send you a confirmation SMS — you'll be contacted directly instead.");
   }
 
   return NextResponse.json({ ok: true, bookingId: booking.id, warnings });

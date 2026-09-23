@@ -399,32 +399,24 @@ img{ max-width: 100%; display: block; }
 }
 
 /* ---- pricing ---- */
-.pricing{
-  margin-top: 36px;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 18px;
+.pricing-points{
+  margin: 28px 0 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 }
-.price-card{
-  background: var(--white);
-  border-radius: 12px;
-  border: 1px solid var(--line);
-  padding: 26px 22px;
-  box-shadow: 0 12px 24px -22px rgba(var(--shadow), 0.35);
+.pricing-point{
+  display: flex;
+  align-items: center;
+  gap: 12px;
 }
-.price-card h3{ font-size: 0.98rem; font-weight: 600; color: var(--text-soft); }
-.price-card .amount{
-  font-family:'Manrope', sans-serif;
-  font-size: 1.6rem;
-  color: var(--navy);
-  margin-top: 10px;
-  font-weight: 800;
+.pricing-point svg{
+  width: 24px;
+  height: 24px;
+  stroke: var(--copper);
+  flex-shrink: 0;
 }
-.price-card p.note{ margin-top: 8px; font-size: 0.88rem; color: var(--text-soft); }
-.pricing-caveat{ margin-top: 20px; font-size: 0.92rem; color: var(--text-soft); }
-@media (max-width: 700px){
-  .pricing{ grid-template-columns: 1fr; }
-}
+.pricing-point p{ font-size: 1.05rem; font-weight: 600; color: var(--navy); }
 
 /* ---- meet harpreet ---- */
 .meet{

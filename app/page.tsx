@@ -322,27 +322,22 @@ export default function Home() {
       <section className="section alt" id="pricing">
         <div className="wrap">
                       <h2>Pricing</h2>
-            <p className="intro">Clear costs before any work starts.</p>
-                                <div className="pricing">
-              <div className="price-card">
-                <h3>Standard call-out</h3>
-                <div className="amount">[insert £]</div>
-                <p className="note">[insert what this covers, e.g. first 30 mins]</p>
+            <p className="intro">Straightforward, no-surprise pricing.</p>
+                                <div className="pricing-points">
+              <div className="pricing-point">
+                <svg viewBox="0 0 24 24" fill="none" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M20 6L9 17l-5-5" />
+                </svg>
+                <p>Free, no-obligation quotes on every job</p>
               </div>
-              <div className="price-card">
-                <h3>Emergency call-out</h3>
-                <div className="amount">[insert £]</div>
-                <p className="note">[insert response time / hours this applies]</p>
-              </div>
-              <div className="price-card">
-                <h3>Hourly rate</h3>
-                <div className="amount">[insert £]</div>
-                <p className="note">[insert any minimum charge]</p>
+              <div className="pricing-point">
+                <svg viewBox="0 0 24 24" fill="none" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M20 6L9 17l-5-5" />
+                </svg>
+                <p>Prices confirmed upfront before any work starts — no surprises</p>
               </div>
             </div>
-            <p className="pricing-caveat">
-              Bathroom fits and larger jobs are quoted individually after a quick look at the work.
-            </p>
+            <a className="btn-primary" href="#enquiry">Request a Quote</a>
                   </div>
       </section>
 
@@ -372,7 +367,7 @@ export default function Home() {
               </details>
               <details>
                 <summary>Do you charge a call-out fee?</summary>
-                <p>[Insert answer — see pricing above.]</p>
+                <p>Every quote is free and with no obligation — you'll know the full price before any work starts.</p>
               </details>
               <details>
                 <summary>Are you Gas Safe registered and insured?</summary>
@@ -443,8 +438,7 @@ export default function Home() {
           </span>
         </div>
         <div className="wrap footer-note">
-          Pricing figures marked in [brackets] above are placeholders — final costs are always confirmed
-          before work starts.
+          Accepted payment methods marked in [brackets] above are a placeholder, to be confirmed.
         </div>
       </footer>
     </>

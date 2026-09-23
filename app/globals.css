@@ -452,13 +452,25 @@ img{ max-width: 100%; display: block; }
 }
 
 /* ---- recent work ---- */
-.recent-work{
+.photo-strip{
   margin-top: 36px;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  display: flex;
+  align-items: flex-start;
   gap: 22px;
+  overflow-x: auto;
+  scroll-snap-type: x proximity;
+  -webkit-overflow-scrolling: touch;
+  cursor: grab;
+  padding-bottom: 6px;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }
+.photo-strip::-webkit-scrollbar{ display: none; }
+.photo-strip.dragging{ cursor: grabbing; }
 .work-card{
+  flex: 0 0 auto;
+  width: 320px;
+  scroll-snap-align: start;
   background: var(--white);
   border: 1px solid var(--line);
   border-radius: 12px;
@@ -468,6 +480,7 @@ img{ max-width: 100%; display: block; }
 .work-photo{
   position: relative;
   aspect-ratio: 4/3;
+  pointer-events: none;
 }
 .work-photo.tall{ aspect-ratio: 3/4; }
 .work-card .work-caption{
@@ -476,10 +489,10 @@ img{ max-width: 100%; display: block; }
 .work-card h3{ font-size: 1rem; font-weight: 700; }
 .work-card p{ margin: 6px 0 0; color: var(--text-soft); font-size: 0.9rem; }
 @media (max-width: 860px){
-  .recent-work{ grid-template-columns: 1fr 1fr; }
+  .work-card{ width: 280px; }
 }
 @media (max-width: 560px){
-  .recent-work{ grid-template-columns: 1fr; }
+  .work-card{ width: 78vw; }
 }
 
 /* ---- booking / enquiry forms (shared) ---- */

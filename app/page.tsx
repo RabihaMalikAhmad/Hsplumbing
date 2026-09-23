@@ -1,6 +1,7 @@
 import Image from "next/image";
 import BookingForm from "@/components/BookingForm";
 import EnquiryForm from "@/components/EnquiryForm";
+import PhotoStrip from "@/components/PhotoStrip";
 
 const recentWork = [
   {
@@ -245,26 +246,7 @@ export default function Home() {
         <div className="wrap">
                       <h2>Recent work</h2>
             <p className="intro">A few recent jobs, from full boiler swaps to hot water system upgrades.</p>
-                                <div className="recent-work">
-              {recentWork.map((job) => (
-                <div className="work-card" key={job.src}>
-                  <div className={`work-photo${job.tall ? " tall" : ""}`}>
-                    <Image
-                      src={job.src}
-                      alt={job.alt}
-                      fill
-                      loading="eager"
-                      sizes="(max-width: 860px) 50vw, 33vw"
-                      style={{ objectFit: "cover" }}
-                    />
-                  </div>
-                  <div className="work-caption">
-                    <h3>{job.title}</h3>
-                    <p>{job.caption}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
+                                <PhotoStrip items={recentWork} />
                   </div>
       </section>
 

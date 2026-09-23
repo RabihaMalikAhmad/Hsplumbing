@@ -273,7 +273,7 @@ export default function Home() {
             <p className="intro">Genuine reviews from Google.</p>
                                 <div className="review-summary">
               <span className="review-stars" aria-hidden="true">★★★★★</span>
-              <span><strong>5.0</strong> from 3 Google reviews</span>
+              <span><strong>5.0</strong> from 4 Google reviews</span>
             </div>
             <div className="reviews">
               <div className="review-card">
@@ -306,6 +306,13 @@ export default function Home() {
                   <span className="review-stars" aria-hidden="true">★★★★★</span>
                 </div>
                 <p className="review-date">Google review · 3 months ago</p>
+              </div>
+              <div className="review-card">
+                <div className="review-head">
+                  <span className="review-name">Noor Khan</span>
+                  <span className="review-stars" aria-hidden="true">★★★★★</span>
+                </div>
+                <p className="review-date">Google review · a day ago</p>
               </div>
             </div>
             <a
@@ -382,7 +389,7 @@ export default function Home() {
               </details>
               <details>
                 <summary>What payment methods do you accept?</summary>
-                <p>[Insert accepted payment methods, e.g. cash, bank transfer, card.]</p>
+                <p>Cash and bank transfer.</p>
               </details>
             </div>
                   </div>
@@ -436,9 +443,6 @@ export default function Home() {
               Find us on Google
             </a>
           </span>
-        </div>
-        <div className="wrap footer-note">
-          Accepted payment methods marked in [brackets] above are a placeholder, to be confirmed.
         </div>
       </footer>
     </>

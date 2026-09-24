@@ -15,10 +15,24 @@ function getTransporter() {
 export async function sendEmail(params: { to: string; subject: string; text: string }) {
   const from = process.env.GMAIL_USER;
   const transporter = getTransporter();
-  return transporter.sendMail({
-    from,
-    to: params.to,
-    subject: params.subject,
-    text: params.text,
-  });
+  try {
+    return await transporter.sendMail({
+      from,
+      to: params.to,
+      subject: params.subject,
+      text: params.text,
+    });
+  } catch (err) {
+    const nodemailerErr = err as { code?: string; responseCode?: number; response?: string; command?: string };
+    console.error("Gmail SMTP send failed:", {
+      to: params.to,
+      subject: params.subject,
+      code: nodemailerErr.code,
+      responseCode: nodemailerErr.responseCode,
+      response: nodemailerErr.response,
+      command: nodemailerErr.command,
+      message: err instanceof Error ? err.message : String(err),
+    });
+    throw err;
+  }
 }

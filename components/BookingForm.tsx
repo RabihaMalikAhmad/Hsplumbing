@@ -5,11 +5,13 @@ import { useState, FormEvent } from "react";
 export default function BookingForm() {
   const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
   const [errorMsg, setErrorMsg] = useState("");
+  const [warnings, setWarnings] = useState<string[]>([]);
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setStatus("sending");
     setErrorMsg("");
+    setWarnings([]);
 
     const form = e.currentTarget;
     const data = new FormData(form);
@@ -28,9 +30,12 @@ export default function BookingForm() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
       });
+      const body = await res.json().catch(() => ({}));
       if (!res.ok) {
-        const body = await res.json().catch(() => ({}));
         throw new Error(body.error || "Something went wrong. Please call instead.");
+      }
+      if (Array.isArray(body.warnings) && body.warnings.length > 0) {
+        setWarnings(body.warnings);
       }
       setStatus("success");
       form.reset();
@@ -46,6 +51,15 @@ export default function BookingForm() {
         <p className="form-status success">
           Thanks — your booking request has been sent. Harpreet will confirm by phone or text shortly.
         </p>
+        {warnings.length > 0 && (
+          <p className="form-status warning">
+            {warnings.join(" ")} Please also call{" "}
+            <a href="tel:07857873515" className="btn-secondary">
+              07857 873515
+            </a>{" "}
+            to be safe.
+          </p>
+        )}
       </div>
     );
   }

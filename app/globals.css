@@ -546,6 +546,7 @@ img{ max-width: 100%; display: block; }
 .form-status{ margin-top: 16px; font-size: 0.95rem; }
 .form-status.success{ color: #2C6B3F; }
 .form-status.error{ color: #B4432F; }
+.form-status.warning{ color: #9A6A1F; }
 .enquiry-form{ background: var(--white); }
 
 /* ---- FAQ ---- */

@@ -31,6 +31,7 @@ export async function POST(req: NextRequest) {
     },
   });
 
+  const warnings: string[] = [];
   const ownerEmail = process.env.OWNER_EMAIL;
   if (ownerEmail) {
     try {
@@ -40,10 +41,13 @@ export async function POST(req: NextRequest) {
         text: `Name: ${enquiry.name}\nEmail: ${enquiry.email}\nPhone: ${enquiry.phone ?? "n/a"}\n\n${enquiry.message}`,
       });
     } catch (err) {
-      console.error("Failed to send enquiry email:", err);
+      console.error("Failed to send enquiry email:", err instanceof Error ? err.message : err);
       // The enquiry is already saved and visible in /admin, so don't fail the request.
+      warnings.push("Could not email Harpreet about this enquiry — please also call/text directly.");
     }
+  } else {
+    warnings.push("OWNER_EMAIL is not configured — no email notification was sent.");
   }
 
-  return NextResponse.json({ ok: true, enquiryId: enquiry.id });
+  return NextResponse.json({ ok: true, enquiryId: enquiry.id, warnings });
 }

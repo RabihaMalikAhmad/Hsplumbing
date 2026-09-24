@@ -54,7 +54,7 @@ export async function POST(req: NextRequest) {
       });
       await prisma.booking.update({ where: { id: booking.id }, data: { emailSent: true } });
     } catch (err) {
-      console.error("Failed to send owner booking email:", err);
+      console.error("Failed to send owner booking email:", err instanceof Error ? err.message : err);
       warnings.push("Could not email Harpreet about this booking — please also call/text directly.");
     }
   } else {

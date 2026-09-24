@@ -28,7 +28,8 @@ wired into the booking flow — Harpreet hasn't verified his number on the Twili
 - A free [Vercel](https://vercel.com) account (for deployment) — sign up with GitHub.
 - A [Google Cloud](https://console.cloud.google.com/) account (free, for Calendar integration) — any
   normal Google account works.
-- A Gmail account (for booking and enquiry email notifications).
+- A free [Resend](https://resend.com) account and a domain you can verify with it (for booking and
+  enquiry email notifications).
 - Optional: a free [Twilio](https://www.twilio.com/try-twilio) account (for SMS, currently unused — see above).
 
 ## 2. Get the code running locally
@@ -48,7 +49,7 @@ cp .env.example .env
 ```
 
 Open `.env` and fill in values as you complete the steps below. You can start with just
-`DATABASE_URL="file:./dev.db"` and `ADMIN_PASSWORD` set, run the site, and add the Twilio/Google/Gmail
+`DATABASE_URL="file:./dev.db"` and `ADMIN_PASSWORD` set, run the site, and add the Twilio/Google/Resend
 keys as you set each one up — features that aren't configured yet will simply be skipped (the booking
 still saves, you just won't get the SMS/calendar side of it until it's configured).
 
@@ -113,23 +114,19 @@ anyone to log in.
 
 Refresh tokens don't expire under normal use, so this is a one-time setup.
 
-## 5. Set up email notifications (Gmail SMTP)
+## 5. Set up Resend (email notifications)
 
-Booking and enquiry notifications are emailed out through a Gmail account using an app password —
-no third-party email service or domain needed.
+Booking and enquiry notifications are emailed out through Resend, sending from a verified domain.
 
-1. Pick the Gmail account that should send these emails (a dedicated one is fine, or an existing one).
-2. Turn on **2-Step Verification** on that account: Google Account → Security → 2-Step Verification →
-   follow the prompts. This is required — app passwords don't exist until it's on.
-3. Once 2-Step Verification is on, go to https://myaccount.google.com/apppasswords, sign in again if
-   asked, type a name for it (e.g. "Reehal Plumbing website"), and click **Create**. Google shows a
-   16-character password once — copy it immediately, you can't view it again afterwards (you can always
-   generate a new one if you lose it).
-4. Set `GMAIL_USER` in `.env` to that Gmail address, and `GMAIL_APP_PASSWORD` to the 16-character app
-   password (spaces don't matter, with or without them both work).
+1. Sign up free at https://resend.com.
+2. Under **Domains**, add and verify the domain the notification emails should send from (e.g.
+   `reehalplumbing.co.uk`) — this means adding a couple of DNS records at your domain registrar. Sending
+   fails until the domain shows as verified.
+3. Go to **API Keys**, create a key, and set `RESEND_API_KEY` in `.env` to it.
+4. Set `EMAIL_FROM` to an address on that verified domain (e.g. `bookings@reehalplumbing.co.uk`).
 5. Set `OWNER_EMAIL` to the address that should receive booking and enquiry notifications
-   (e.g. `Reehal.Engineer@Hotmail.com`) — this can be a completely different address to `GMAIL_USER`,
-   which is just the account doing the sending.
+   (e.g. `Reehal.Engineer@Hotmail.com`) — this can be any inbox, it doesn't need to be on the verified
+   domain.
 
 ## 6. Set up Google Analytics 4 (optional)
 
@@ -194,7 +191,7 @@ lib/
   prisma.ts               Prisma client singleton
   sms.ts                  Twilio helper (not currently used, see note above)
   googleCalendar.ts       Google Calendar helper
-  email.ts                Gmail SMTP helper
+  email.ts                Resend helper
   auth.ts                 admin password/session helpers
   phone.ts                UK phone number formatting for Twilio (not currently used)
 prisma/schema.prisma      database schema (Booking, Enquiry)
@@ -204,7 +201,7 @@ middleware.ts             protects /admin routes
 
 ## Notes
 
-- If Twilio, Google Calendar or Gmail aren't configured, the relevant feature is skipped gracefully —
+- If Twilio, Google Calendar or Resend aren't configured, the relevant feature is skipped gracefully —
   bookings and enquiries are always saved to the database and visible in `/admin` either way.
 - The booking form assumes UK phone numbers; `lib/phone.ts` converts common formats
   (`07xxx xxxxxx`, `+447xxx`, `447xxx`) to the E.164 format Twilio requires.

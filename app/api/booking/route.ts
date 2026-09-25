@@ -74,8 +74,8 @@ export async function POST(req: NextRequest) {
     if (event.id) {
       await prisma.booking.update({ where: { id: booking.id }, data: { calendarEventId: event.id } });
     }
-  } catch (err) {
-    console.error("Failed to create calendar event:", err);
+  } catch {
+    // lib/googleCalendar.ts already logs the underlying Google API error in detail.
     warnings.push("Could not add this to Google Calendar automatically — Harpreet will confirm manually.");
   }
 
